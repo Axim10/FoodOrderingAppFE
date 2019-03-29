@@ -14,6 +14,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const styles = theme => ({
     root: {
@@ -40,10 +41,14 @@ const customStyles = {
 
 const TabContainer = function (props) {
     return (
-        <Typography component="div" style={{ padding: 0 , textAlign: "center"}}>
-        {props.children}
+        <Typography component="div" style={{ padding: 0, textAlign: "center" }}>
+            {props.children}
         </Typography>
     );
+}
+
+TabContainer.propTypes = {
+    children: PropTypes.node.isRequired
 }
 
 class Header extends Component {
@@ -52,7 +57,9 @@ class Header extends Component {
         super();
         this.state = {
             modalIsOpen: false,
-            value: 0
+            value: 0,
+            contactNoRequired: "dispNone",
+            contactno: ""
         };
     }
     openModalHandler = () => {
@@ -63,6 +70,14 @@ class Header extends Component {
     }
     tabChangeHandler = (event, value) => {
         this.setState({ value });
+    }
+    loginClickHandler = () => {
+        this.state.contactno === "" ? this.setState({contactNoRequired: "dispBlock"}) : this.setState({contactNoRequired: "dispNone"})
+    }
+    inputContactnoChangeHandler = (e) => {
+        this.setState({
+            contactno: e.target.value
+        })
     }
     render() {
         const { classes } = this.props;
@@ -106,18 +121,23 @@ class Header extends Component {
                         <Tab label="LOGIN" />
                         <Tab label="SIGNUP" />
                     </Tabs>
-                    <TabContainer>
-                        <FormControl required>
-                            <InputLabel htmlFor="contactno"> Contact No.</InputLabel>
-                            <Input id="contactno" type="text" />
-                        </FormControl> <br/> <br/>
-                        <FormControl required>
-                            <InputLabel htmlFor="password"> Password</InputLabel>
-                            <Input id="password" type="password" />
-                        </FormControl> <br/> <br/>
-                        <Button variant="contained" color="primary"> LOGIN
-                        </Button>
-                    </TabContainer>
+                    {this.state.value === 0 &&
+                        <TabContainer>
+                            <FormControl required>
+                                <InputLabel htmlFor="contactno"> Contact No.</InputLabel>
+                                <Input id="contactno" type="text" contactno={this.state.contactno} onChange={this.inputContactnoChangeHandler} />
+                                <FormHelperText className={this.state.contactNoRequired}>
+                                    <span className="red">required</span>
+                                </FormHelperText>
+                            </FormControl> <br /> <br />
+                            <FormControl required>
+                                <InputLabel htmlFor="password"> Password</InputLabel>
+                                <Input id="password" type="password" />
+                            </FormControl> <br /> <br />
+                            <Button variant="contained" color="primary" onClick={this.loginClickHandler}> LOGIN
+                            </Button>
+                        </TabContainer>
+                    }
                 </Modal>
             </div>
         )
