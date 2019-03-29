@@ -11,6 +11,9 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
     root: {
@@ -18,10 +21,31 @@ const styles = theme => ({
         width: '320px',
         fontSize: 15,
         '&:after': {
-                       borderBottom: '1px solid white',
+            // The MUI source seems to use this but it doesn't work
+            borderBottom: '1px solid white',
         },
     }
 })
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
+
+const TabContainer = function (props) {
+    return (
+        <Typography component="div" style={{ padding: 0 , textAlign: "center"}}>
+        {props.children}
+        </Typography>
+    );
+}
+
 class Header extends Component {
 
     constructor() {
@@ -37,8 +61,8 @@ class Header extends Component {
     closeModalHandler = () => {
         this.setState({ modalIsOpen: false })
     }
-    tabChangeHandler = (event , value) => {
-        this.setState({value});
+    tabChangeHandler = (event, value) => {
+        this.setState({ value });
     }
     render() {
         const { classes } = this.props;
@@ -76,11 +100,24 @@ class Header extends Component {
                 <Modal ariaHideApp={false}
                     isOpen={this.state.modalIsOpen}
                     contentLabel="Login"
-                    onRequestClose={this.closeModalHandler}>
-                    <Tabs value={this.state.value} onChange={this.tabChangeHandler}>
-                        <Tab label="Login" />
-                        <Tab label="Register" />
+                    onRequestClose={this.closeModalHandler}
+                    style={customStyles}>
+                    <Tabs className="tabs" value={this.state.value} onChange={this.tabChangeHandler}>
+                        <Tab label="LOGIN" />
+                        <Tab label="SIGNUP" />
                     </Tabs>
+                    <TabContainer>
+                        <FormControl required>
+                            <InputLabel htmlFor="contactno"> Contact No.</InputLabel>
+                            <Input id="contactno" type="text" />
+                        </FormControl> <br/> <br/>
+                        <FormControl required>
+                            <InputLabel htmlFor="password"> Password</InputLabel>
+                            <Input id="password" type="password" />
+                        </FormControl> <br/> <br/>
+                        <Button variant="contained" color="primary"> LOGIN
+                        </Button>
+                    </TabContainer>
                 </Modal>
             </div>
         )
