@@ -6,6 +6,7 @@ import Home from "../screens/home/Home";
 import Profile from "../screens/profile/Profile";
 
 
+
 class Controller extends Component {
 
     constructor() {
@@ -17,12 +18,15 @@ class Controller extends Component {
     render() {
         return(
             <Router>
+
                 <div className="main-container">
           
                   <Route path='/' render={(props) => <Home {...props} baseUrl={this.baseUrl} />} />
                   <Route path='/profile' render={(props) => <Profile {...props} baseUrl={this.baseUrl} />} />
+                  <Route path='/restaurant/:restaurantID' render={(props) => <Details {...props} baseUrl={this.baseUrl} />} />
                   <Route path='/checkout' render={(props) => <Checkout {...props} baseUrl={this.baseUrl} />} />
 
+                
                 </div>
             </Router>
         )
