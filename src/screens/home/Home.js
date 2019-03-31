@@ -28,7 +28,11 @@ const styles = {
     },
     rating: {
         color: 'white',
-    }
+    },
+     restaurantAvgRateText: {
+        marginLeft: 30,
+        float: 'right',
+    },
   };
 
 class Home extends Component {
@@ -91,6 +95,9 @@ class Home extends Component {
                                     <Typography className={classes.rating}>
                                          <span>{"(" + restaurant.restaurants[0].number_customers_rated + ")"}</span>
                                     </Typography>
+                                    <Typography className={classes.restaurantAvgRateText} variant='body2'>
+                                                <i className="fa fa-inr"></i>{restaurant.average_price} for two
+                                     </Typography>
                                   </div>
                                 </CardContent>
                             </CardActionArea>
