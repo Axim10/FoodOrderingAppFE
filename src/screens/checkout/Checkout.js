@@ -473,32 +473,32 @@ class Checkout extends Component {
                                                                             classes={{ tile: classes.existingAddressGridListTileTile }}
                                                                         >
 
-                                                                            {/* existing address - flat/building no */}
+                                                                            {/* flat/building no of existing address */}
                                                                             <Typography variant='subtitle1'>
                                                                                 {address.flat_building_name}
                                                                             </Typography>
 
-                                                                            {/* existing address - locality */}
+                                                                            {/* locality of existing address */}
                                                                             <Typography variant='subtitle1'>
                                                                                 {address.locality}
                                                                             </Typography>
 
-                                                                            {/* existing address - city */}
+                                                                            {/* city */}
                                                                             <Typography variant='subtitle1'>
                                                                                 {address.city}
                                                                             </Typography>
 
-                                                                            {/* existing address - state */}
+                                                                            {/* state */}
                                                                             <Typography variant='subtitle1'>
                                                                                 {address.state.state_name}
                                                                             </Typography>
 
-                                                                            {/* existing address - pincode */}
+                                                                            {/* pincode */}
                                                                             <Typography variant='subtitle1'>
                                                                                 {address.pincode}
                                                                             </Typography>
 
-                                                                            {/* existing address - check */}
+                                                                            {/* check */}
                                                                             <CheckCircleIcon
                                                                                 className={classes.existingAddressCheckCircle}
                                                                                 nativeColor={this.state[address.id] === 'select-address' ? 'green' : 'grey'}
@@ -515,7 +515,7 @@ class Checkout extends Component {
                                                     {tabValue === 1 &&
                                                         <TabContainer>
 
-                                                            {/* new address - flat/building no */}
+                                                            {/* flat/building no */}
                                                             <FormControl required>
                                                                 <InputLabel htmlFor='flatBuildingNo'>Flat / Building No.</InputLabel>
                                                                 <Input
@@ -531,7 +531,7 @@ class Checkout extends Component {
                                                             </FormControl>
                                                             <br /><br />
 
-                                                            {/* new address - locality */}
+                                                            {/* locality */}
                                                             <FormControl required>
                                                                 <InputLabel htmlFor='locality'>Locality</InputLabel>
                                                                 <Input
@@ -547,7 +547,7 @@ class Checkout extends Component {
                                                             </FormControl>
                                                             <br /><br />
 
-                                                            {/* new address - city */}
+                                                            {/* city */}
                                                             <FormControl required>
                                                                 <InputLabel htmlFor='city'>City</InputLabel>
                                                                 <Input
@@ -563,7 +563,7 @@ class Checkout extends Component {
                                                             </FormControl>
                                                             <br /><br />
 
-                                                            {/* new address - state */}
+                                                            {/* state */}
                                                             <FormControl required className={classes.newAddressFormControl}>
                                                                 <InputLabel htmlFor='newAddressstate'>State</InputLabel>
                                                                 <Select
@@ -586,7 +586,7 @@ class Checkout extends Component {
                                                             </FormControl>
                                                             <br /><br />
 
-                                                            {/* new address - pincode */}
+                                                            {/* pincode */}
                                                             <FormControl required>
                                                                 <InputLabel htmlFor='pincode'>Pincode</InputLabel>
                                                                 <Input
@@ -615,7 +615,7 @@ class Checkout extends Component {
                                                 : ''
                                             }
 
-                                            {/* payment methods - radio group*/}
+                                            {/* radio group*/}
                                             {index === 1 ?
                                                 <div className={classes.radioRoot}>
                                                     <FormControl component='fieldset' className={classes.radioFormControl}>
